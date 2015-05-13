@@ -44,7 +44,7 @@ var dupWays = db.ways.aggregate(
       { "count": { "$gt": 1 } }
     }
    ],{ allowDiskUse : true}
-)
+);
 
 dupWays.forEach(function(doc) {
     doc.dups.shift();
