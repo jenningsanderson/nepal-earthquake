@@ -46,6 +46,8 @@ var options = {
   <p>On April 25th, a 7.8 magnitude earthquake stuck Nepal approximately 50 miles northwest of Kathmandu.  With the coordination of <a href='http://kathmandulivinglabs.org/'>Kathmandu Living Labs</a> and the <a href='http://hotosm.org'>Humanitarian OpenStreetMap Team</a>, a global volunteer effort to map roads and buildings in the affected area is under way.  OpenStreetMap data is being used by the American Red Cross, the World Bank, and other organizations to support response and recovery activities in Nepal. </p>
   <p>Read more: <a href='http://wiki.openstreetmap.org/wiki/2015_Nepal_earthquake'>http://wiki.openstreetmap.org/wiki/2015_Nepal_earthquake</a></p>
   <p>This site provides basic statistics describing the work of OSM volunteers in the response to this disaster. The data is based on hashtags used in changset comments and therefore undercounts the total amount of contributions occurring at this time.</p>
+
+  <p><strong>As of May 21, This site is no longer tracking live editing statistics.</strong> We thank you for all the hard work done in this unprecedented response effort.</p>
 </div>
 <br clear='both' />
 
@@ -72,7 +74,7 @@ var hourlyUsers = []
 var cumulativeUsers = []
 var cumulativeUserIds = []
 for (var i=0; i < changesets.length; i ++) {
-	if (new Date(changesets[i].start_date) > new Date('2015-04-25 14:00:00 +0000') && new Date(changesets[i].start_date) < new Date().getTime()) {
+	if (new Date(changesets[i].start_date) > new Date('2015-04-25 14:00:00 +0000') && new Date(changesets[i].start_date) < (new Date(2015,4,25)).getTime()) {
 		hourly_changesets[i] = {}
 		hourly_changesets[i].date = changesets[i].start_date
 		hourly_changesets[i].value = changesets[i].objects.length
@@ -93,7 +95,7 @@ var toPlot = [
 ```
 
 #User Contributions
-<p style="font-size:22px; margin-top:20px;"><strong>{{ numeral(total_mappers).format('0,0') }}</strong> mappers have made <strong>{{numeral(totalChangesets).format('0,0')}}</strong> edits to the map.  At least <strong>{{ numeral(new_mappers).format('0,0') }}</strong> of these mappers are new to OpenStreetMap.</p>
+<p style="font-size:22px; margin-top:20px;">In the month following the earthquake, over <strong>{{ numeral(total_mappers).format('0,0') }}</strong> mappers have made <strong>{{numeral(totalChangesets).format('0,0')}}</strong> edits to the map.  At least <strong>{{ numeral(new_mappers).format('0,0') }}</strong> of these mappers were new to OpenStreetMap.</p>
 
 
 #Changesets Per Hour 
@@ -103,8 +105,7 @@ var toPlot = [
 
 {{ osmviz.linechart(toPlot,options) }}
 <p style="font-size:10px; margin:-10px 0px 0px 35px;">UTC/GMT Time</p>
-
-
+<p>*Empty spots denote 
 ```
 var baseurl = '/data/www/nepal/'
 var options = {headers: ["Tag", "Count"]}
@@ -148,33 +149,34 @@ ways_per_tag.forEach(function(d){
 	wayTable.push([d.tag, d.count])
 	wayCount = wayCount + d.count
 })
-```
 
-#Latest Contribution Activity
-##Since the top of the hour: {{ prettyDate }} UTC
 
-```
-var experienced_mappers = _.values(osmdata(baseurl_live + '/json/experienced_user_count.json'))[0]
-var new_mappers = _.values(osmdata(baseurl_live + '/json/new_user_count.json'))[0]
-```
-New Mappers: {{ new_mappers }} | Experienced Mappers: {{ experienced_mappers }}
+//#Latest Contribution Activity
+//##Since the top of the hour: {{ prettyDate }} UTC
 
-```
-var userList = osmdata(baseurl_live+ '/json/user_list.json')
-var userTable = []
-var ops = {headers:["User","Node Count", "Way Count", "Changeset Count"], row_function:'showUserEditsFromRows'}
 
-userList.forEach(function(user){
-	userTable.push([user.user, user.nodes, user.ways, user.changesets])
-})
-ops.title="userTable"
-```
+//var experienced_mappers = _.values(osmdata(baseurl_live + '/json/experienced_user_count.json'))[0]
+//var new_mappers = _.values(osmdata(baseurl_live + '/json/new_user_count.json'))[0]
 
-<div style="width:45%; display:inline-block">{{ osmviz.table('full', userTable, ops) }}</div><div style="width:54%; display:inline-block; vertical-align:top;">{{osmviz.map('user_contributions', {name: "UserContributions", height: 550, width: 700, path: '/nepal-live/'+current_hour}) }}</div>
-```
-//where I had to add a comment
+//New Mappers: {{ new_mappers }} | Experienced Mappers: {{ experienced_mappers }}
+
+
+//var userList = osmdata(baseurl_live+ '/json/user_list.json')
+//var userTable = []
+//var ops = {headers:["User","Node Count", "Way Count", "Changeset Count"], row_function:'showUserEditsFromRows'}
+
+//userList.forEach(function(user){
+//	userTable.push([user.user, user.nodes, user.ways, user.changesets])
+//})
+//ops.title="userTable"
+//
+
+//<div style="width:45%; display:inline-block">{{ osmviz.table('full', userTable, ops) }}</div><div style="width:54%; display:inline-block; vertical-align:top;">{{osmviz.map('user_contributions', {name: "UserContributions", height: 550, width: 700, path: '/nepal-live/'+current_hour}) }}</div>
+
+
 ```
 #Initial HOT Task Tag Counts
+These impressive numbers represent just the initial HOT tasks created for the response.
 ```
 //where I had to add a comment
 ```
