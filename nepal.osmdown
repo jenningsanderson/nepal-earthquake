@@ -95,7 +95,7 @@ var toPlot = [
 ```
 
 #User Contributions
-<p style="font-size:22px; margin-top:20px;">In the month following the earthquake, over <strong>{{ numeral(total_mappers).format('0,0') }}</strong> mappers have made <strong>{{numeral(totalChangesets).format('0,0')}}</strong> edits to the map.  At least <strong>{{ numeral(new_mappers).format('0,0') }}</strong> of these mappers were new to OpenStreetMap.</p>
+<p style="font-size:22px; margin-top:20px;">In the month following the earthquake, over <strong>{{ numeral(total_mappers).format('0,0') }}</strong> mappers made more than <strong>{{numeral(totalChangesets).format('0,0')}}</strong> edits to the map.  At least <strong>{{ numeral(new_mappers).format('0,0') }}</strong> of these mappers were new to OpenStreetMap.</p>
 
 
 #Changesets Per Hour 
