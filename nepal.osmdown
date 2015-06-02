@@ -47,7 +47,7 @@ var options = {
   <p>Read more: <a href='http://wiki.openstreetmap.org/wiki/2015_Nepal_earthquake'>http://wiki.openstreetmap.org/wiki/2015_Nepal_earthquake</a></p>
   <p>This site provides basic statistics describing the work of OSM volunteers in the response to this disaster. The data is based on hashtags used in changset comments and therefore undercounts the total amount of contributions occurring at this time.</p>
 
-  <p><strong>As of May 21, This site is no longer tracking live editing statistics.</strong> We thank you for all the hard work done in this unprecedented response effort.</p>
+  <p><strong>This site is no longer tracking live editing statistics.</strong> We thank you for all the hard work done in this unprecedented response effort.</p>
 </div>
 <br clear='both' />
 
@@ -74,7 +74,7 @@ var hourlyUsers = []
 var cumulativeUsers = []
 var cumulativeUserIds = []
 for (var i=0; i < changesets.length; i ++) {
-	if (new Date(changesets[i].start_date) > new Date('2015-04-25 14:00:00 +0000') && new Date(changesets[i].start_date) < (new Date(2015,4,25)).getTime()) {
+	if (new Date(changesets[i].start_date) > new Date('2015-04-25 14:00:00 +0000') && new Date(changesets[i].start_date) < (new Date(2015,4,13)).getTime()) {
 		hourly_changesets[i] = {}
 		hourly_changesets[i].date = changesets[i].start_date
 		hourly_changesets[i].value = changesets[i].objects.length
@@ -104,8 +104,7 @@ var toPlot = [
 ```
 
 {{ osmviz.linechart(toPlot,options) }}
-<p style="font-size:10px; margin:-10px 0px 0px 35px;">UTC/GMT Time</p>
-<p>*Empty spots denote 
+<p style="font-size:10px; margin:-10px 0px 0px 35px;">UTC/GMT Time</p> 
 ```
 var baseurl = '/data/www/nepal/'
 var options = {headers: ["Tag", "Count"]}
